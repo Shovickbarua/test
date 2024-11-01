@@ -1,0 +1,24 @@
+1.UPDATE products
+SET price = price * 1.20
+WHERE category = 'Electronics';
+
+2.SELECT name, salary
+FROM salaries
+WHERE salary = (
+    SELECT MAX(salary)
+    FROM salaries
+    WHERE salary < (SELECT MAX(salary) FROM salaries)
+);
+
+3. SELECT name
+FROM Employees e
+WHERE salary > (
+    SELECT AVG(salary)
+    FROM Employees
+    WHERE department_id = e.department_id
+);
+
+4.SELECT c.name AS customer_name, COUNT(o.order_id) AS order_count
+FROM Customers c
+JOIN Orders o ON c.customer_id = o.customer_id
+GROUP BY c.customer_id, c.name;
